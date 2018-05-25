@@ -9,7 +9,14 @@ This is an ongoing private project.
 - All weights is saved on AI cluster (under ~/weights)
 - Named in VERSION_SUBID_BACKBONE
 ### Version
-Check weights.xlsx for detailed version info
+| Version | Multi-RPN | sharing features | 1*1 conv + sharing feature | Hard-negative Mining | Backbone | Note                                |
+|---------|-----------|------------------|----------------------------|----------------------|----------|-------------------------------------|
+| 1       |           |                  |                            |                      | VGG16    | Original Implementation from Github |
+| 2       |           |                  |                            | Yes                  | VGG16    |                                     |
+| 3       | Yes       |                  |                            |                      | VGG16    |                                     |
+| 4       | Yes       |                  |                            | Yes                  | VGG16    |                                     |
+| 5       | Yes       | Yes              |                            |                      | VGG16    |                                     |
+| 6       | Yes       |                  | Yes                        |                      |          |                                     |
 ### SUBID
 Just to avoid name conflict for different weights
 ### BACKBONE
