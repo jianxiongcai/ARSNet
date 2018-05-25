@@ -46,6 +46,31 @@ The abstract should briefly summarize the contents of the paper in
 %
 %
 %
+
+\section{Related Work}
+
+\subsection{R-CNN}
+~\cite{RCNN} addressed the R-CNN detector which promote the accuracy of nueral networks for object detection. This R-CNN detector combines a region proposal part (Selective Search~\cite{SelectiveSearch}), a CNN feature extractor and a classifer. R-CNN detector surmount conventional detectors in the aspect of accuracy but its speed is limited by generating massive region proposals and extracting features using CNN on each of the region proposal. 
+
+Spatial pyramid pooling (SPP)~\cite{SPP} introduced a way to meliorate by employ pyramid pooling layer. SPP-net speed up the detector by computing CNN only once per image. Imitating SPP-net, Fast-RCNN ~\cite{fastRCNN} shown that using multi-task learning and back-propagation through ROI pooling layer will speed up the R-CNN detector by an order of magnitude. 
+
+The bottleneck of Fast-RCNN is conventional region proposal generator, so Faster-RCNN ~\cite{fasterRCNN} proposed Region Proposal Network (RPN) which sharing features with classifer network.
+
+
+\subsection{Region Proposal}
+Most traditional region proposal methods are based on low-level features. Faster-RCNN introduced Region Proposal Network (RPN) to generate region proposals based on high-level semantic features. RPN supass conventional region proposal methods on both speed and accuracy, either unsupervised conventional method (e.g. Selective Search~\cite{SelectiveSearch}) or supervised conventional method (e.g. BING~\cite{BING}).
+
+There are several approach of refining region proposals.
+
+\subsubsection{cascade refinement}
+Region Proposal Network can be refined by applying a multi-stage cascading pipeline structure.
+
+CRAFT~\cite{CRAFT} uses a two-class Fast R-CNN to refine proposals generate by a standard RPN, and ~\cite{CraftingGBD} improved CRAFT. DeepBox~\cite{DeepBox} rerank proposals produced by EdgeBoxes ~\cite{EdgeBoxes} to refine proposals. DeepProposal~\cite{DeepProposal} introduce a Cascading Deep Convolutional Layers to get feature maps. Similar to CRAFT, ~\cite{Cascadedcnn} proposes a RefineNet added after RPN which can effectively reduce the number of proposals and improve their confidence. MTCNN~\cite{MTCNN} apply similar approach, using a R-net to refine P-net.
+
+~\cite{GroupRecursive} introduce a spatial correlation related method, using a new EM-like group recursive learing approach to iteratively refine object proposals and provide an optimal spatial configuration of object detections.
+\subsubsection{multi-scale refinment}
+\subsection{ROI and NMS}
+CoupleNet~\cite{CoupleNet} propose a two branch network of ROI after RPN to obtain both local part information and global imformation.
 \section{First Section}
 \subsection{A Subsection Sample}
 Please note that the first paragraph of a section or subsection is
@@ -112,39 +137,39 @@ For citations of references, we prefer the use of square brackets
 and consecutive numbers. Citations using labels or the author/year
 convention are also acceptable. The following bibliography provides
 a sample reference list with entries for journal
-articles~\cite{ref_article1}, an LNCS chapter~\cite{ref_lncs1}, a
-book~\cite{ref_book1}, proceedings without editors~\cite{ref_proc1},
-and a homepage~\cite{ref_url1}. Multiple citations are grouped
-\cite{ref_article1,ref_lncs1,ref_book1},
-\cite{ref_article1,ref_book1,ref_proc1,ref_url1}.
+% articles~\cite{ref_article1}, an LNCS chapter~\cite{ref_lncs1}, a
+% book~\cite{ref_book1}, proceedings without editors~\cite{ref_proc1},
+% and a homepage~\cite{ref_url1}. Multiple citations are grouped
+% \cite{ref_article1,ref_lncs1,ref_book1},
+% \cite{ref_article1,ref_book1,ref_proc1,ref_url1}.
 %
 % ---- Bibliography ----
 %
 % BibTeX users should specify bibliography style 'splncs04'.
 % References will then be sorted and formatted in the correct style.
-%
-% \bibliographystyle{splncs04}
-% \bibliography{mybibliography}
-%
-\begin{thebibliography}{8}
-\bibitem{ref_article1}
-Author, F.: Article title. Journal \textbf{2}(5), 99--110 (2016)
 
-\bibitem{ref_lncs1}
-Author, F., Author, S.: Title of a proceedings paper. In: Editor,
-F., Editor, S. (eds.) CONFERENCE 2016, LNCS, vol. 9999, pp. 1--13.
-Springer, Heidelberg (2016). \doi{10.10007/1234567890}
+\bibliographystyle{splncs04}
+\bibliography{egbib}
 
-\bibitem{ref_book1}
-Author, F., Author, S., Author, T.: Book title. 2nd edn. Publisher,
-Location (1999)
+% \begin{thebibliography}{8}
+% \bibitem{ref_article1}
+% Author, F.: Article title. Journal \textbf{2}(5), 99--110 (2016)
 
-\bibitem{ref_proc1}
-Author, A.-B.: Contribution title. In: 9th International Proceedings
-on Proceedings, pp. 1--2. Publisher, Location (2010)
+% \bibitem{ref_lncs1}
+% Author, F., Author, S.: Title of a proceedings paper. In: Editor,
+% F., Editor, S. (eds.) CONFERENCE 2016, LNCS, vol. 9999, pp. 1--13.
+% Springer, Heidelberg (2016). \doi{10.10007/1234567890}
 
-\bibitem{ref_url1}
-LNCS Homepage, \url{http://www.springer.com/lncs}. Last accessed 4
-Oct 2017
-\end{thebibliography}
+% \bibitem{ref_book1}
+% Author, F., Author, S., Author, T.: Book title. 2nd edn. Publisher,
+% Location (1999)
+
+% \bibitem{ref_proc1}
+% Author, A.-B.: Contribution title. In: 9th International Proceedings
+% on Proceedings, pp. 1--2. Publisher, Location (2010)
+
+% \bibitem{ref_url1}
+% LNCS Homepage, \url{http://www.springer.com/lncs}. Last accessed 4
+% Oct 2017
+% \end{thebibliography}
 \end{document}
