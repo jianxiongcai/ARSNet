@@ -62,3 +62,7 @@ Ongoing:
 Q:
 	ResNet 
 
+
+
+paper of asrNMS:http://www.mdpi.com/2072-4292/9/12/1312
+
