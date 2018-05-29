@@ -109,6 +109,34 @@ To include aspect ratio as a prior knowledge for object detection, we modified t
     \end{figure}
 
 
+\paragraph{Sharing Features}
+The multi-rpn network works, but comes at great cost. One of the obvious shortcomings of this approach would be the high overall time complexity. Compared with the original faster RCNN, which runs at about 9fps on one Nvidia TitanX, our multi-rpn approach can only run at half speed. Sharing features, plus adding additional one-by-one convolutional layers are applied to cope with such problem. More specifically (see Figure \ref{ARS_sh}), three rpns share the same 3*3*512 layer, but each would have another 1*1*256 layer of its own to further reduce depth. Other parts of the network remains unchangde. From table \ref{table_fps}, adding 1*1 conv into our network improves speed while maintaining a similar mAp. However, it's still slow when compared with the origin RCNN, afterall, region proposal network still remains to be the biggest overhead of faster RCNN.
+    \begin{figure}[!htb]
+    \includegraphics[width= 0.5\textwidth]{pic/ARS-archi-share.png}
+    \caption{Sharing Features}
+    \label{ARS_sh}
+    \end{figure}
+
+\begin{table}
+\centering
+\begin{tabular}{|c|c|}
+\hline Approach & Frame per second (fps) \\
+\hline ARSnet (300 proposals) & 4.73 \\
+\hline ARSnet (900 proposals) & 3.56 \\
+\hline ARSnet+1*1 conv (300 proposals) & 5.04 \\
+\hline ARSnet+1*1 conv (900 proposals) & 3.84 \\
+\hline faster RCNN (300 proposals) & 9 \\
+\hline
+\end{tabular}
+\caption{Time complexity under different settings reported on Nvidia TitanX. Adding 1*1 conv into our network improves speed while maintaining a similar mAp.}
+\label{table_fps}
+\end{table}
+
+\subsection{Training Details}
+In general, we adopted the training approaches from the origin faster RCNN. Fisrt 30 feature extraction layers are initialized with a pretrained VGG-16 model from caffe, other convolutional layers are drawed from a zero-mean Gaussian distribution with standard deviation with 0.01 (\emph{REF FAST RCNN}). One single image is chosen randomly at each step to provide positive and negative samples up to 1:3 ratio for both rpns and final classifiers. We trained the network with stochastic gradient descent (SGD) end-to-end, learning rate is set to 0.001 for the first 15 epochs. Then we fine-tuned the model with the best accuracy with another learning rate of 0.0001 for the next 15 epochs. Our approach shows an significant increase of aspect ratio sensitive class.
+
+
+
 \section{Experiment}
 \subsection{Experiments on PASCAL VOC}
 We evaluate our method on the PASCAL VOC 2007 detection benchmark. This dataset consists of 5011 train images and 4952 test images over 20 object categories. Evaluation is perforated on all test images. The metric we use is mean Average Precision (mAP). This is also a general metric in the field of computer vision.
