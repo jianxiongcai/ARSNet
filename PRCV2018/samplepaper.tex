@@ -47,6 +47,8 @@ The abstract should briefly summarize the contents of the paper in
 %
 %
 
+\section{Introduction}
+
 \section{Related Work}
 
 \subsection{R-CNN}
@@ -76,6 +78,41 @@ Other methods like FPN, RetinaNet~\cite{FPN}~\cite{RetinaNet} propose a pyramida
 
 \subsection{ROI and NMS}
 CoupleNet~\cite{CoupleNet} propose a two branch network of ROI after RPN to obtain both local part information and global imformation.
+
+
+
+\section{Our approach}
+\subsection{Aspect Ratio}
+% Insert an image of the different aspect ratio
+We have count the sapect ratio of different classes on different dataset. All datasets contain certain classes whose aspect ratio show obvious uneven distribution among different shapes. 
+% For example, in MSCOCO 2017, the majority of the ball is of the shape 1*1, only a few sample gets to 1*2 and 2*1.
+
+
+\subsection{Network Architure}
+To include aspect ratio as the prior knowledge for object detection. We modified the network architure by duplicating the RPN network such that different network would propose objects of different shapes.
+% Insert the netowrk architure
+
+Our approach shows an significant increase of aspect ratio sensitive class.
+
+\section{Things we tried but didn't work}
+
+
+
+\section{Performance}
+
+
+% speed
+% overall performance
+
+\section{Discussion}
+% other ways to split the dataset?
+
+
+%---------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------
+% Following are just examples
+%---------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------
 \section{First Section}
 \subsection{A Subsection Sample}
 Please note that the first paragraph of a section or subsection is
