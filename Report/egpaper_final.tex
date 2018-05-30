@@ -51,7 +51,7 @@ First line of institution2 address\\
 %%%%%%%%% ABSTRACT
 \begin{abstract}
 \par
-In this project, we propose an approach to include aspect ratio as the prior knowledge for object detection. Our approach duplicate the RPN network in faster RCNN \cite{fasterRCNN} so that different RPN can focus on different shapes.
+Many objects in real world have a prior knowledge, which could be helpful for object detection. In this project, we propose an approach to include aspect ratio as the prior knowledge. Our approach duplicate the RPN network in faster RCNN \cite{fasterRCNN} so that different RPN can focus on generating proposal of different shapes.
 \par
 Our approach dramatically improves the performance (AP) of certain classes. However, our approach bring two major drawback: 1) the speed descreases as adding more RPN. 2) more false negative appear as different RPNs generate equal number of proposal for now.
 
@@ -60,30 +60,30 @@ Our approach dramatically improves the performance (AP) of certain classes. Howe
 %%%%%%%%% BODY TEXT
 \section{Introduction}
 \par
-General object detection on RGB images plays an important role in various applications, like autonomous driving, etc. In this project, we propose a new approach to include aspect ratio as the prior knowledge for object detection. Although aspect ratio is a relatively weak feature for objects, we observes that it holds for certain object classes in most major datasets. Our approach dramatically improve the performance (AP) for those certain classes.
+General-purpose object detection on RGB images plays an important role in various applications, like autonomous driving and security. In this project, we propose a new approach to include aspect ratio as the prior knowledge for object detection. Although aspect ratio is a relatively weak feature for objects, we observes that it holds for certain object classes in most major datasets. Our approach dramatically improve the performance (AP) for those certain classes.
 
 \subsection{Aspect Ratio (Motivation)}
 % TODO: we don't need to histogram
 As objects usually do not deform so much, they are generally with relatively fixed shape in some extent, which infers that the target bounding box will have certain relationship with aspect ratio especially for non-living objects. An intuitive example is that bottle will be more likely to have large aspect ratios (width to height), i.e. tall and thin. According to the statistics, both of the two commonly used datasets, VOC and MS COCO, are showing the regulation. Following histograms describe that for some classes objects are tend to be with some aspect ratios. 
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.7\linewidth]{pic/dist_pics/voc_hist}
-\caption{Histograms of VOC2007}
-\label{fig:vochist}
-\end{figure}
+% \begin{figure}[h]
+% \centering
+% \includegraphics[width=0.7\linewidth]{pic/dist_pics/voc_hist}
+% \caption{Histograms of VOC2007}
+% \label{fig:vochist}
+% \end{figure}
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.7\linewidth]{pic/dist_pics/hist_coco}
-\caption{Histograms of MS COCO}
-\label{fig:histcoco}
-\end{figure}
+% \begin{figure}[h]
+% \centering
+% \includegraphics[width=0.7\linewidth]{pic/dist_pics/hist_coco}
+% \caption{Histograms of MS COCO}
+% \label{fig:histcoco}
+% \end{figure}
 
 
 
 % TODO: add cition to the fatser RCNN
-The original RPN network in Faster RCNN have 3 anchor shape: 1:2, 1:1 and 2:1. Thus we count the distribution of object shape by dividing their aspect ratios into those three ratios, as is shown in fig.\ref{fig:piesvoc} and fig.\ref{fig:piescoco}.
+The original RPN network in Faster RCNN \ref{fasterRCNN} have 3 anchor shape: 1:2, 1:1 and 2:1. Thus we count the distribution of object shape by dividing their aspect ratios into those three ratios, as is shown in fig.\ref{fig:piesvoc} and fig.\ref{fig:piescoco}.
 
 \begin{figure}[h]
 \centering
