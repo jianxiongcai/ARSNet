@@ -83,7 +83,7 @@ As objects usually do not deform so much, they are generally with relatively fix
 
 
 % TODO: add cition to the fatser RCNN
-The original RPN network in Faster RCNN \ref{fasterRCNN} have 3 anchor shape: 1:2, 1:1 and 2:1. Thus we count the distribution of object shape by dividing their aspect ratios into those three ratios, as is shown in fig.\ref{fig:piesvoc} and fig.\ref{fig:piescoco}.
+The original RPN network in Faster RCNN \cite{fasterRCNN} have 3 anchor shape: 1:2, 1:1 and 2:1. Thus we count the distribution of object shape by dividing their aspect ratios into those three ratios, as is shown in fig.\ref{fig:piesvoc} and fig.\ref{fig:piescoco}.
 
 \begin{figure}[h]
 \centering
@@ -111,14 +111,14 @@ The bottleneck of Fast-RCNN is conventional region proposal generator, so Faster
 
 
 \subsection{Region Proposal}
-Most traditional region proposal methods are based on low-level features. Faster-RCNN introduced Region Proposal Network (RPN) to generate region proposals based on high-level semantic features. RPN surpass conventional region proposal methods, either unsupervised method (e.g. Selective Search~\cite{SelectiveSearch}) or supervised method (e.g. BING~\cite{BING}), on both speed and accuracy.
+Most traditional region proposal methods are based on low-level features. Faster-RCNN introduced Region Proposal Network (RPN) to generate region proposals based on high-level semantic features. RPN surpass conventional region proposal methods, either unsupervised method (e.g. Selective Search~\cite{SelectiveSearch} and EdgeBoxes \cite{EdgeBoxes}) or supervised method (e.g. BING~\cite{BING}), on both speed and accuracy.
 
 There are several approach of refining region proposals.
 
 \subsubsection{cascade refinement}
-Region Proposal Network can be refined by applying a multi-stage cascading pipeline structure.
+Region Proposal Network can be refined by applying a multi-stage cascading pipeline structure. Applying a two-class Fast RCNN to refine proposals has shown significant improvement. \cite{CRAFT} \cite{CraftingGBD} \cite{DeepBox}.  
 
-CRAFT~\cite{CRAFT} uses a two-class Fast R-CNN to refine proposals generate by a standard RPN, and ~\cite{CraftingGBD} improved CRAFT. DeepBox~\cite{DeepBox} rerank proposals produced by EdgeBoxes ~\cite{EdgeBoxes} to refine proposals. DeepProposal~\cite{DeepProposal} introduce a Cascading Deep Convolutional Layers to get feature maps. Similar to CRAFT, ~\cite{Cascadedcnn} proposes a RefineNet added after RPN which can effectively reduce the number of proposals and improve their confidence. MTCNN~\cite{MTCNN} apply similar approach, using a R-net to refine P-net.
+DeepProposal~\cite{DeepProposal} introduce a Cascading Deep Convolutional Layers to get feature maps. Similar to CRAFT, ~\cite{Cascadedcnn} proposes a RefineNet added after RPN which can effectively reduce the number of proposals and improve their confidence. MTCNN~\cite{MTCNN} apply similar approach, using a R-net to refine P-net.
 
 ~\cite{GroupRecursive} introduce a spatial correlation related method, using a new EM-like group recursive learing approach to iteratively refine object proposals and provide an optimal spatial configuration of object detections.
 \subsubsection{multi-scale refinment}
