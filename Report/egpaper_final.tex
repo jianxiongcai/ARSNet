@@ -140,8 +140,8 @@ We have count the sapect ratio of different classes on different dataset. All da
 
 
 \subsection{Network Architure}
-\paragraph{ARS Net}
-To include aspect ratio as a prior knowledge for object detection, we modified the network architure by duplicating the region proposal network into 3 copies, each handling objects of different shapes. During training (see figure \ref{ARS_De}), green rpn (right) is only provided with ground truth bounding boxes of aspect ratio greater than 2:1, grey one (middle) with boxes around 1:1 only and yellow one (left) with boxes smaller than 1:2 only. Results of three region proposal networks are simply stacked together in testing time. In this way, our network is able to learn separate filters for objects of different shapes. Non-maximum suppression is applied in the end to reject high over-lapping objects. 
+\paragraph{Our approach}
+To include aspect ratio as a prior knowledge for object detection, we modified the network architure by duplicating the region proposal network into 3 copies, each handling objects of different shapes. During training (see figure \ref{ARS_De}), green RPN (right) is only provided with ground truth bounding boxes of aspect ratio greater than 2:1, grey one (middle) with boxes around 1:1 only and yellow one (left) with boxes smaller than 1:2 only. Results of three region proposal networks are simply stacked together in testing time. In this way, our network is able to learn separate filters for objects of different shapes. Non-maximum suppression is applied in the end to reject high over-lapping objects. 
     \begin{figure}[!htb]
     \includegraphics[width= 0.45\textwidth]{pic/ARS-archi-detail.png}
     \caption{Multiple RPN approach}
@@ -150,7 +150,7 @@ To include aspect ratio as a prior knowledge for object detection, we modified t
 
 
 \paragraph{Sharing Features}
-The multi-rpn network works, but comes at great cost. One of the obvious shortcomings of this approach would be the high overall time complexity. Compared with the original faster RCNN, which runs at about 9fps on one Nvidia TitanX, our multi-rpn approach can only run at half speed. Sharing features, plus adding additional one-by-one convolutional layers are applied to cope with such problem. More specifically (see Figure \ref{ARS_sh}), three rpns share the same 3*3*512 layer, but each would have another 1*1*256 layer of its own to further reduce depth. Other parts of the network remains unchangde. From table \ref{table_fps}, adding 1*1 conv into our network improves speed while maintaining a similar mAp. However, it's still slow when compared with the origin RCNN, afterall, region proposal network still remains to be the biggest overhead of faster RCNN.
+The multi-RPN network works, but comes at great cost. One of the obvious shortcomings of this approach would be the high overall time complexity. Compared with the original faster RCNN, which runs at about 9fps on one Nvidia TitanX, our multi-RPN approach can only run at half speed. Sharing features, plus adding additional one-by-one convolutional layers are applied to cope with such problem. More specifically (see Figure \ref{ARS_sh}), three RPNs share the same 3*3*512 layer, but each would have another 1*1*256 layer of its own to further reduce depth. Other parts of the network remains unchangde. From table \ref{table_fps}, adding 1*1 conv into our network improves speed while maintaining a similar mAP. However, it's still slow when compared with the origin RCNN, afterall, region proposal network still remains to be the biggest overhead of faster RCNN.
     \begin{figure}[!htb]
     \includegraphics[width= 0.5\textwidth]{pic/ARS-archi-share.png}
     \caption{Sharing Features}
@@ -168,12 +168,12 @@ The multi-rpn network works, but comes at great cost. One of the obvious shortco
 \hline faster RCNN (300 proposals) & 9 \\
 \hline
 \end{tabular}
-\caption{Time complexity under different settings reported on Nvidia TitanX. Adding 1*1 conv into our network improves speed while maintaining a similar mAp.}
+\caption{Time complexity under different settings, all reported on one Nvidia TitanX. Adding 1*1 conv into our network improves speed while maintaining a similar mAP.}
 \label{table_fps}
 \end{table}
 
 \subsection{Training Details}
-In general, we adopted the training approaches from the origin faster RCNN. Fisrt 30 feature extraction layers are initialized with a pretrained VGG-16 model from caffe, other convolutional layers are drawed from a zero-mean Gaussian distribution with standard deviation with 0.01 (\emph{REF FAST RCNN}). One single image is chosen randomly at each step to provide positive and negative samples up to 1:3 ratio for both rpns and final classifiers. We trained the network with stochastic gradient descent (SGD) end-to-end, learning rate is set to 0.001 for the first 15 epochs. Then we fine-tuned the model with the best accuracy with another learning rate of 0.0001 for the next 15 epochs. Our approach shows an significant increase of aspect ratio sensitive class.
+In general, we adopted the training approaches from the origin faster RCNN. Fisrt 30 feature extraction layers are initialized with a pretrained VGG-16 model from caffe with the first 4 layers fixed, other convolutional layers are drawed from a zero-mean Gaussian distribution with standard deviation with 0.01 (\emph{REF FAST RCNN}). One single image is chosen randomly at each step to provide positive and negative samples up to 1:3 ratio for both RPNs and final classifiers. We trained the network with stochastic gradient descent (SGD) end-to-end, learning rate is set to 0.001 for the first 15 epochs. Then we fine-tuned the model with the best accuracy with another learning rate of 0.0001 for the next 15 epochs. Our approach shows an significant increase of aspect ratio sensitive class.
 
 
 \begin{table*}[ht]
