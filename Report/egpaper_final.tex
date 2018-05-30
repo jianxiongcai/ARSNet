@@ -257,7 +257,7 @@ Additionally, we want to take full advantage of aspect ratio in other parts but 
 Three RPNs means more region proposal and lead more false positives in our detection results as for original faster R-CNN will decrease some RoIs in the same locations with different shapes by NMS in RPN( it might be right for some cases but not always).
 
 \par
-We simply apply NMS without score and lead mAP decrease by 0.5 roughly, decrease by 1 approximately when choose 300 RoIs after NMS. To avoid the influence caused by order, we shuffle the RoIs after stack them all together. Removing shuffle will make mAP down much more.
+We simply apply NMS without score and lead mAP decrease by 0.5 roughly, decrease by 1 approximately when choose 300 RoIs after NMS. To avoid the influence caused by order, we shuffle the RoIs after stack them all together. Removing shuffle will make mAP down much more. The problem for NMS only depending on IoU may cause both false positives and negatives, as NMS can't recognize which is the right one to be left.
 
 \par
 When apply NMS with score, we face a trouble that the three RPNs are score the RoIs independently so it’s hard to make comparison and there is also a question that if the scores should be normalized so we didn’t implement the NMS with score in this step.
