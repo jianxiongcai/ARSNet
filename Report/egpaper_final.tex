@@ -147,6 +147,41 @@ We evaluate our method on the PASCAL VOC 2007 detection benchmark. This dataset 
 We further tested ARS Net with diverse number of proposals, which is as shown in Table 2. When the number of proposals drops from 900( Top 300 proposals are selected from each scale) to 300, mAP reduce by X\%. And a further decrease on proposals leads to dropping on mAP. (What?s the reason).
 In fact, when number of proposals is 400 each, mAP reaches the highest. However, this will lead to a decrease in fps.
 
+\begin{table*}[]
+\centering
+\caption{Comparison}
+\label{my-label}
+
+\resizebox{\textwidth}{!}{
+\begin{tabular}{l|c|c|c|cccccccccccccccccccc}
+\multicolumn{1}{c|}{method} & \# of  proposals & data & mAP  & areo & bike & bird & boat & bottle & bus  & car  & cat  & chair & cow  & table & dog  & horse & mbike & person & plant & sheep & sofa & train & tv   \\ \hline
+
+Faster RCNN      & 300 & VOC07   & 71.8 & 73.5 & 81.5 & 68.5 & 53.7 & 52.3 & 80.7 & 85.3 & 84.3 & 52.5 & 76.8 & 71.5 & 81.3 & 84.9 & 75.1 & 79.6 & 44.7 & 72.5 & 65.9 & 79.8 & 72.3 \\
+
+ARSNet   & 900 & VOC07 & 73.2   &74.5& 81.5& 71.1& 56.7& 56.2& 83.6& 85.8& 87.4& 51.4& 82.7& 68.9& 83.8& 86.5& 77.1&  81.0& 43.9& 73.0& 66.4& 79.7& 72.6
+\end{tabular}
+}
+\end{table*}
+
+
+
+\begin{table}[]
+\caption{Decreasing number of proposals in ARSNet}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline 
+ method & \# of proposals & mAP
+\\ \hline 
+ ARSNet & 300 & 71.5
+\\ \hline 
+ ARSNet & 900 & 73.2
+\\ \hline 
+ ARSNet & 1200 & ??
+\\ \hline
+\end{tabular}
+\end{table}
+
+
 
 
 
