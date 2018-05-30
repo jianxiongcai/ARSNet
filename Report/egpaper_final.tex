@@ -233,8 +233,8 @@ We further tested ARS-Net with diverse number of proposals, which is as shown in
 % speed
 % overall performance
 \section{Things we tried but didn't work}
-% other ways to split the dataset?
-\subsection{Non-maximum Suppression(NMS) after RPNs.}
+There are still many problems in our networks, so we came up with many new ideas but didn't work. Additionally, we want to take full advantage of aspect ratio in other parts but fail unfortunately.
+\subsection{Add NMS after RPNs.}
 \par
 Three RPNs means more region proposal and lead more false positives in our detection results as for original faster R-CNN will decrease some RoIs in the same locations with different shapes by NMS in RPN( it might be right for some cases but not always).
 
@@ -244,15 +244,14 @@ We simply apply NMS without score and lead mAP decrease by 0.5 roughly, decrease
 \par
 When apply NMS with score, we face a trouble that the three RPNs are score the RoIs independently so it’s hard to make comparison and there is also a question that if the scores should be normalized so we didn’t implement the NMS with score in this step.
 
-\subsection{Rescoring based on prior aspect ratio distribution.}
-\par
+\subsection{Rescoring Bsed on Pror Distribution}
 The idea to reduce score of bounding boxes with rare aspect ratios is naive. We simply multiply predicted score of the probability(calculate from the statistics of dataset) of the aspect ratio occurred in its corresponding class. It leads more than 10 decrease although the thought seems to make sense at first glance.
 \par
 We try to multiply the predicted score with the prior possibility and a constant k but it doesn't work as well.
 \par
 It failed mainly because it is almost impossible to design a rescore mapping by hand and it is not robust for extreme cases. What's more, the rightness of prior possibility is questioning.
 
-\subsection{Cascade head part}
+\subsection{Cascade Head Part}
 \par
 All the tries can be summarized as duplicate removal indeed. The initial idea is to reshape the bounding boxes generated in the first head by prior ratio distribution to convey the class imformation to next head but fail to design a suitable reshape mapping based on aspect ratio. Then we try cascade purely but maybe some faults in programming or mistakes in traning lead that cascade method failed during training and it actually doesn't relate much about aspect ratio.
 \par
