@@ -60,7 +60,11 @@ Our approach dramatically improves the performance (AP) of certain classes. Howe
 %%%%%%%%% BODY TEXT
 \section{Introduction}
 \par
-General-purpose object detection on RGB images plays an important role in various applications, like autonomous driving and security. In this project, we propose a new approach to include aspect ratio as the prior knowledge for object detection. Although aspect ratio is a relatively weak feature for objects, we observes that it holds for certain object classes in most major datasets. Our approach dramatically improve the performance (AP) for those certain classes.
+\subsection{Object Detection}
+\par
+General-purpose object detection on RGB images plays an important role in various applications, like autonomous driving and security. Two-stage approach like Faster RCNN \cite{fasterRCNN} shows a better performance in terms of mAP, compared with one-stage network such as YOLO.
+\par
+In Faster RCNN, RPN Network is used for proposing ROI regions. Lots of work has been made to refine region proposal and combine prior knowledge, which would be introduced in section \ref{sec:related-work}. In this project, we combine the prior knowledge of aspect ratio.
 
 \subsection{Aspect Ratio (Motivation)}
 % TODO: we don't need to histogram
@@ -98,6 +102,10 @@ The original RPN network in Faster RCNN \cite{fasterRCNN} have 3 anchor shape: 1
 \caption{Pie charts of MS COCO}
 \label{fig:piescoco}
 \end{figure}
+
+\subsection{ARS-Net}
+\par
+In this project, we propose a new approach \ref{pic/ARS-archi-abstract} to include aspect ratio as the prior knowledge for object detection. Although aspect ratio is a relatively weak feature for objects, we observes that it holds for certain object classes in most major datasets. Our approach dramatically improve the performance (AP) for those certain classes.
 
 \section{Related Work}
 	\label{sec:related-work}
@@ -250,6 +258,10 @@ All the tries can be summarized as duplicate removal indeed. The initial idea is
 \par
 We try to decrease IoU of NMS and increase the lower bound of score when implementing the second head but failed. Additionally we also try to weight the loss of different head to make the second head a more accurate classifier and regressor but fail while training.(The loss function diverges at the first epoch and then we reduce the learning rate but the mAP of the first epoch is below 10 so we quit).
 
+
+\section{Discussion}
+\par
+Although aspect-ratio has been proved to be effective on current major datasets like VOC2007 and MSCOCO, it is relatively a weak feature for real-world objects. For example, objects like tables may show different shapes in different view-points. Some more strong features might be more effective for object detection.  
 
 \section{Conclusion}
 By including aspect ratio as a prior knowledge, our network dramatically improves performance on detecting aspect-ratio sensitive objects. However, on other object, the performance reduce because of more false positive.
