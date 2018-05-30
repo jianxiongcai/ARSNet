@@ -67,6 +67,19 @@ General-purpose object detection on RGB images plays an important role in variou
 In Faster RCNN, RPN Network is used for proposing ROI regions. Lots of work has been made to refine region proposal and combine prior knowledge, which would be introduced in section \ref{sec:related-work}. In this project, we combine the prior knowledge of aspect ratio.
 
 \subsection{Aspect Ratio (Motivation)}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{pic/dist_pics/o_piescoc}
+\caption{Pie charts of VOC2007}
+\label{fig:piesvoc}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{pic/dist_pics/pies_coco}
+\caption{Pie charts of MS COCO}
+\label{fig:piescoco}
+\end{figure}
 % TODO: we don't need to histogram
 As objects usually do not deform so much, they are generally with relatively fixed shape in some extent, which infers that the target bounding box will have certain relationship with aspect ratio especially for non-living objects. An intuitive example is that bottle will be more likely to have large aspect ratios (width to height), i.e. tall and thin. According to the statistics, both of the two commonly used datasets, VOC and MS COCO, are showing the regulation. Following histograms describe that for some classes objects are tend to be with some aspect ratios. 
 
@@ -89,23 +102,16 @@ As objects usually do not deform so much, they are generally with relatively fix
 % TODO: add cition to the fatser RCNN
 The original RPN network in Faster RCNN \cite{fasterRCNN} have 3 anchor shape: 1:2, 1:1 and 2:1. Thus we count the distribution of object shape by dividing their aspect ratios into those three ratios, as is shown in fig.\ref{fig:piesvoc} and fig.\ref{fig:piescoco}.
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.7\linewidth]{pic/dist_pics/o_piescoc}
-\caption{Pie charts of VOC2007}
-\label{fig:piesvoc}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.7\linewidth]{pic/dist_pics/pies_coco}
-\caption{Pie charts of MS COCO}
-\label{fig:piescoco}
-\end{figure}
-
 \subsection{ARS-Net}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{pic/ARS-archi-abstract.png}
+\caption{ARS-Net RPN architecture}
+\label{fig:ARS-archi}
+\end{figure}
+
 \par
-In this project, we propose a new approach \ref{pic/ARS-archi-abstract} to include aspect ratio as the prior knowledge for object detection. Although aspect ratio is a relatively weak feature for objects, we observes that it holds for certain object classes in most major datasets. Our approach dramatically improve the performance (AP) for those certain classes.
+In this project, we propose a new approach ( as is shown in fig.\ref{fig:ARS-archi} ) to include aspect ratio as the prior knowledge for object detection. Although aspect ratio is a relatively weak feature for objects, we observes that it holds for certain object classes in most major datasets. Our approach dramatically improve the performance (AP) for those certain classes.
 
 \section{Related Work}
 	\label{sec:related-work}
