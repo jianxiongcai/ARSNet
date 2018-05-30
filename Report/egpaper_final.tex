@@ -140,7 +140,7 @@ We have count the sapect ratio of different classes on different dataset. All da
 
 
 \subsection{Network Architure}
-\paragraph{Our approach}
+\paragraph{Multi-RPN}
 To include aspect ratio as a prior knowledge for object detection, we modified the network architure by duplicating the region proposal network into 3 copies, each handling objects of different shapes. During training (see figure \ref{ARS_De}), green RPN (right) is only provided with ground truth bounding boxes of aspect ratio greater than 2:1, grey one (middle) with boxes around 1:1 only and yellow one (left) with boxes smaller than 1:2 only. Results of three region proposal networks are simply stacked together in testing time. In this way, our network is able to learn separate filters for objects of different shapes. Non-maximum suppression is applied in the end to reject high over-lapping objects. 
     \begin{figure}[!htb]
     \includegraphics[width= 0.45\textwidth]{pic/ARS-archi-detail.png}
