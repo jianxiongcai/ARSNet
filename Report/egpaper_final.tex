@@ -83,7 +83,7 @@ Our approach dramatically improves the performance (AP) of certain classes. Howe
 
 \end{abstract}
 
-%%%%%%%%% BODY TEXT
+%%%%%%%%% BODY 
 \section{Introduction}
 \par
 General-purpose object detection on RGB images plays an important role in various applications, like autonomous driving and security. Two-stage approach like Faster RCNN \cite{fasterRCNN} shows a better performance in terms of mAP, compared with one-stage network such as YOLO.
@@ -268,10 +268,10 @@ We tried hard-negative mining on VOC2007 (both on original network architure and
 
 \section{Discussion}
 \par
-Although aspect-ratio has been proved to be effective on current major datasets like VOC2007 and MSCOCO, it is relatively a weak feature for real-world objects. For example, objects like tables may show different shapes in different view-points. Some more strong features might be more effective for object detection.  
+Although aspect-ratio has been proved to be effective on current major datasets like VOC2007\cite{voc07} and MSCOCO\cite{coco}, it is relatively a weak feature for real-world objects. For example, objects like tables may show different shapes in different view-points. Some more strong features might be more effective for object detection.  
 
 \section{Conclusion}
-By including aspect ratio as a prior knowledge, our network dramatically improves performance on detecting aspect-ratio sensitive objects. However, on other object, the performance reduce because of more false positive.
+By including aspect ratio as a prior knowledge, our network dramatically improves performance on detecting aspect-ratio sensitive objects. However, on other objects, the performance reduce because of more false positive.
 
 \section{Contribution}
 Following are contribution from each team member.
