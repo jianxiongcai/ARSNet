@@ -248,7 +248,7 @@ We simply apply NMS without score and lead mAP decrease by 0.5 roughly, decrease
 \par
 When applying NMS with score, we face a trouble that the three RPNs are scoring the RoIs independently so it’s hard to make a comparison and there is also a question that if the scores should be normalized so we didn’t implement the NMS with score in this step.
 
-\subsection{Rescoring Based on Pror Distribution}
+\subsection{Rescoring Based on Prior Distribution}
 The idea to reduce score of bounding boxes with rare aspect ratios is naive. We simply multiply predicted score of the probability(calculate from the statistics of dataset) of the aspect ratio occurred in its corresponding class. It leads more than 10 decreases although the thought seems to make sense at first glance.
 \par
 We try to multiply the predicted score with the prior possibility and a constant k but it doesn't work as well.
