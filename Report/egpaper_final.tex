@@ -162,15 +162,17 @@ The multi-RPN network works, but comes at great cost. One of the obvious shortco
 
 \begin{table}[ht]
 \centering
+\resizebox{\linewidth}{!}{
 \begin{tabular}{|c|c|}
 \hline Approach & Frame per second \\
 \hline faster RCNN (300 proposals) & 9 \\
-\hline ARS-Net (300 proposals) & 4.73 \\
-\hline ARS-Net (900 proposals) & 3.56 \\
-\hline ARS-Net+1*1 conv (300 proposals) & 5.04 \\
-\hline ARS-Net+1*1 conv (900 proposals) & 3.84 \\
+\hline ARS-Net (300 proposals), no sharing features & 4.73 \\
+\hline ARS-Net (900 proposals), no sharing features & 3.56 \\
+\hline ARS-Net (300 proposals) & 5.04 \\
+\hline ARS-Net (900 proposals) & 3.84 \\
 \hline
 \end{tabular}
+}
 \caption{Time complexity under different settings, all reported on one Nvidia TitanX. Adding 1*1 conv into our network improves speed while maintaining a similar mAP.}
 \label{table_fps}
 \end{table}
