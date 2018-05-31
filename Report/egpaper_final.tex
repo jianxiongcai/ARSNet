@@ -86,7 +86,7 @@ Our approach dramatically improves the performance (AP) of certain classes. Howe
 %%%%%%%%% BODY 
 \section{Introduction}
 \par
-General-purpose object detection on RGB images plays an important role in various applications, like autonomous driving and security. Two-stage approach like Faster RCNN \cite{fasterRCNN} shows a better performance in terms of mAP, compared with one-stage network such as YOLO.
+General-purpose object detection on RGB images plays an important role in various applications, like autonomous driving and security. Two-stage approach like Faster RCNN \cite{fasterRCNN} shows a better performance in terms of mAP, compared with one-stage network such as YOLO \cite{yolo}.
 \par
 In Faster RCNN, RPN Network is used for proposing ROI regions. Lots of work has been made to refine region proposal and combine prior knowledge, which would be introduced in section \ref{sec:related-work}. In this project, we include the prior knowledge of aspect ratio.
 
@@ -96,8 +96,7 @@ In Faster RCNN, RPN Network is used for proposing ROI regions. Lots of work has 
 \caption{Pie charts of MS COCO\cite{coco}, where a car (top right) tends to be long, tv (down left) square and bottle (down right) tall. Same can be observed on VOC07\cite{voc07} dataset.}
 \label{fig:piescoco}
 \end{figure}
-% TODO: we don't need to histogram
-As objects usually do not deform so much, they generally have a relatively fixed shape in some extent, which infers that the target bounding box will have a certain relationship with aspect ratio, especially for non-living objects. An intuitive example is that bottle will be more likely to have large aspect ratios (width to height), i.e. tall and thin. According to the statistics, both of the two commonly used datasets, VOC and MS COCO, are showing the regulation. Following histograms describe this phenomenon for some classes, where objects tend to have some different aspect ratios. 
+As objects usually do not deform so much, they generally have a relatively fixed shape in some extent, which infers that the target bounding box will have a certain relationship with aspect ratio, especially for non-living objects. An intuitive example is that bottle will be more likely to have large aspect ratios (width to height), i.e. tall and thin. According to the statistics, both of the two commonly used datasets, VOC \cite{voc07} and MS COCO \cite{coco}, are showing the regulation. Following histograms describe this phenomenon for some classes, where objects tend to have some different aspect ratios. 
 
 % \begin{figure}[h]
 % \centering
