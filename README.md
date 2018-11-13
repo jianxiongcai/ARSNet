@@ -1,9 +1,10 @@
 # ARSNet
-This is an ongoing private project. 
+This is an archived course project on CS272 Computer Vision II. 
+The report is publicly available at [Report/egpaper_final.pdf](https://github.com/ernestcai/ARSNet/blob/master/Report/egpaper_final.pdf)
 
 # Files
 - Meeting Log
-- Report (PRCV 2018 Templates)
+- Final Report
 
 # weights
 - All weights is saved on AI cluster (under ~/weights)
