@@ -1,6 +1,6 @@
 # ARSNet
 This is an archived course project on CS272 Computer Vision II. 
-The report is publicly available at [Report/egpaper_final.pdf](https://github.com/ernestcai/ARSNet/blob/master/Report/egpaper_final.pdf)
+Only report is publicly available at [Report/egpaper_final.pdf](https://github.com/ernestcai/ARSNet/blob/master/Report/egpaper_final.pdf)
 
 # Files
 - Meeting Log
